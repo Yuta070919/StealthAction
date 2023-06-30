@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public string name;
 
     // Start is called before the first frame update
     void Start()
@@ -18,19 +17,27 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(-1 * Time.deltaTime, 0, 0);
+            transform.position += new Vector3(-1 * Time.deltaTime, 0, 0);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(1 * Time.deltaTime, 0, 0);
+            transform.position += new Vector3(1 * Time.deltaTime, 0, 0);
         }
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(0, 0, 1 * Time.deltaTime);
+            transform.position += new Vector3(0, 0, 1 * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(0, 0, -1 * Time.deltaTime);
+            transform.position += new Vector3(0, 0, -1 * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            transform.Rotate(new Vector3(0,-2,0),Space.Self);
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            transform.Rotate(new Vector3(0, 2, 0), Space.Self);
         }
     }
 }
