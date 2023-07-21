@@ -20,6 +20,9 @@ public class Enemy : MonoBehaviour
     private int enemyHealth;
     public int MaxEnemyHealth = 20;
     public Slider slider;
+    public float EnemyAttackCooldown = 1.0f;
+    public float EnemyAttackCoolingTime = 0.0f;
+    public Player player;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,12 +46,19 @@ public class Enemy : MonoBehaviour
             case EnemyPhase.Patroll:
                 EnemyObject.transform.LookAt(RoutePoints[pointNumber].transform.position);
                 EnemyObject.transform.Translate(0, 0, MoveSpeed * Time.deltaTime);
+                
                 break;
             case EnemyPhase.Tracking:
                 EnemyObject.transform.LookAt(PlayerPos.transform.position);
                 if (Vector3.Distance(EnemyObject.transform.position, PlayerPos.transform.position) >= 2)
                 {
                     EnemyObject.transform.Translate(0, 0, MoveSpeed * Time.deltaTime);
+                }
+                EnemyAttackCoolingTime += Time.deltaTime;
+                if (EnemyAttackCoolingTime >= EnemyAttackCooldown)
+                {
+                    EnemyAttackCoolingTime = 0;
+                    player.PlayerHpReduce(1);
                 }
                 break;
                     
@@ -91,6 +101,7 @@ public class Enemy : MonoBehaviour
         enemyHealth = enemyHealth - value;
         if (enemyHealth <= 0)
         {
+            Phase = EnemyPhase.Patroll;
             Destroy(this.gameObject);
         }
     }
