@@ -20,7 +20,7 @@ public class EnemyGenerater : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer <= Interval) {
+        if (timer >= Interval) {
             GameObject enemy = Instantiate(EnemyTemplate);
             EnemyTemplate enemytemplate = enemy.GetComponent<EnemyTemplate>();
             enemytemplate.player = player;

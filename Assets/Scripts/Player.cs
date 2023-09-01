@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,6 +61,13 @@ public class Player : MonoBehaviour
                 PlayerAttackWeapons[i].SetActive(false);
             }
             PlayerAttackWeapons[number].SetActive(true);
+            StartCoroutine(DelayMethod(number));
         }
+    }
+    private IEnumerator DelayMethod(int number)
+    {
+        yield return new WaitForSeconds(1);
+        PlayerAttackWeapons[number].SetActive(false);
+        PlayerAttackWeapons[0].SetActive(true);
     }
 }

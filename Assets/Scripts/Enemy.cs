@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
     public Player player;
     float timer;
     float timer1;
+    public Renderer EnemyRenderer;
     // Start is called before the first frame update
     void Start()
     {
