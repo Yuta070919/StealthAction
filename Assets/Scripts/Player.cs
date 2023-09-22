@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
     public int PlayerHP = 20;
     public Slider PlayerHPSlider;
     public int EnemyStrength = 1;
-    public GameObject[] PlayerAttackWeapons; 
+    public GameObject[] PlayerAttackWeapons;
+    public float PlayerSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,8 +34,8 @@ public class Player : MonoBehaviour
     //キーコントロールするやつ
     public void KeyControll()
     {
-        if (Input.GetKey(KeyCode.W)) transform.Translate(0, 0, 1 * Time.deltaTime);
-        if (Input.GetKey(KeyCode.S)) transform.Translate(0, 0, -1 * Time.deltaTime);
+        if (Input.GetKey(KeyCode.W)) transform.Translate(0, 0, PlayerSpeed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.S)) transform.Translate(0, 0, -PlayerSpeed * Time.deltaTime);
         if (Input.GetKey(KeyCode.A)) transform.Rotate(new Vector3(0, -2, 0), Space.Self);
         if (Input.GetKey(KeyCode.D)) transform.Rotate(new Vector3(0, 2, 0), Space.Self);
         if (Input.GetKey(KeyCode.Alpha1)) PlayerChangeWeapons(0);
